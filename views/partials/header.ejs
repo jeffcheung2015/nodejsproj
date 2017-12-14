@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+	$(document).ready(function(){
+				
+	});
+</script>
+	<nav class="navbar navbar-expand-sm" style="background-color: #B0EEE6;">
+
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown">Search</a>
+				<div class="dropdown-menu">
+					<form class="form-inline mx-2">
+
+						<input class="form-control" type="text" placeholder="Search">
+						<button class="form-control btn btn-outline-success my-2" type="submit">Search</button>
+
+					</form>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/contact">Contact</a>
+			</li>
+			
+		</ul>
+
+		<ul class="navbar-nav ml-auto">	
+			<% if (typeof user !== 'undefined') { %>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown">
+						Welcome <%= user.username %>!</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/profile">Profile</a>
+						<a class="dropdown-item" href="/manageItem">Manage Items</a>
+					</div>
+				</li>	
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Logout</a>
+				</li>			
+			<% }else{%>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/register">Register</a>
+				</li>
+			<% } %>
+			
+			
+		</ul>
+
+
+
+
+	</nav>	

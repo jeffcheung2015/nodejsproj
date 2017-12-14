@@ -1,0 +1,21 @@
+.nav-item a:hover{
+	background-color: white;
+	border-radius: 10px;
+}
+
+#registerForm,#loginForm{
+	width:50%;
+	height: 50%;
+	position: relative;
+	left:auto;
+	right:auto;
+	top:50px;
+	box-shadow: 2px 2px 2px #888888;
+	border:0.5px outset #7ecdee;
+	padding:30px 30px;
+}
+
+.indexSlide{
+	width:500px;
+	height: 300px;
+}
