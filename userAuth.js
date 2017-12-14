@@ -40,6 +40,7 @@ function(username, password, done) {
 
 //se dese
 passport.serializeUser(function(user, done) {
+	console.log(user.id);
 	done(null, user.id);
 });
 
@@ -54,8 +55,22 @@ passport.deserializeUser(function(id, done) {
 
 
 module.exports = {
+	//used as callback only
+	isLoggedIn : function(req, res, next) {
+	    // if user is authenticated in the session, carry on 
+	    if (req.isAuthenticated())	return next();
+	    // if they aren't redirect them to the home page
+	    res.redirect('/');
+	},
+	
+	isLoggedOut : function(req, res, next) {
+	    // if user is authenticated in the session, carry on 
+	    if (!req.isAuthenticated())	return next();
+	    // if they aren't redirect them to the home page
+	    res.redirect('/profile');
+	},
 
-	userUseGetPost : function(app){
+	userUseGetPost : function(app, isLoggedOut){
 
 		//express.session middleware is used to retrieve user session from a datastore
 		app.use(session({ store: new RedisStore({
@@ -67,7 +82,7 @@ module.exports = {
 			resave: false,
 			saveUninitialized: false,
 			//preventing XSS
-			cookie: {  httpOnly: true,  secure: true  } 
+			cookie: {  httpOnly: true 	 } 
 		}));
 
 		app.use(flash());
@@ -77,7 +92,7 @@ module.exports = {
 		app.use(passport.session()); //has to be used after express session
 
 		//login
-		app.get('/login', function(req, res){
+		app.get('/login', isLoggedOut, function(req, res){
 			//req.flash("error") is a must in order to make the error msg appeared
 			res.render('login', { message: req.flash("error")});
 		});
@@ -89,31 +104,21 @@ module.exports = {
 		);
 
 		//register
+		app.get('/register',  isLoggedOut, function(req, res){
+			res.render('register', { message: "xx" });
+		});
 		app.post('/register', function(req,res){
 			db.insertUserRow(req.body.Name, req.body.Email, req.body.BirthDate
 				, req.body.Username, req.body.Password, req.body.PhoneNumber
 				, req.body.District);
 			res.redirect('/');
-		});
-		app.get('/register', function(req, res){
-			res.render('register', {
-				username:req.session.username
-			});
-		});
+		});	
 
 		//logout
 		app.get('/logout', function(req,res){
 			req.logout();
 			res.redirect('/');
 		});
-	},
-
-	isLoggedIn : function(req, res, next) {
-	    // if user is authenticated in the session, carry on 
-	    if (req.isAuthenticated()){
-	    	return next();
-	    }
-	    // if they aren't redirect them to the home page
-	    res.redirect('/');
 	}
+
 }
