@@ -4,13 +4,17 @@
 	<title>Title</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -19,14 +23,14 @@
 				
 	});
 </script>
-	<nav class="navbar navbar-expand-sm" style="background-color: #B0EEE6;">
+	<nav class="navbar navbar-expand-sm py-0 headerNav">
 
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link glyphicon glyphicon-home" href="/">Home</a>
+				<a class="nav-link fa fa-home" href="/"> Home</a>
 			</li>
 			<li class="nav-item dropdown ">
-				<a class="nav-link dropdown-toggle glyphicon glyphicon-search" data-toggle="dropdown">Search</a>
+				<a class="nav-link dropdown-toggle fa fa-search" data-toggle="dropdown"> Search</a>
 				<div class="dropdown-menu">
 					<form class="form-inline mx-2">
 
@@ -37,7 +41,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link glyphicon glyphicon-phone-alt" href="/contact">Contact</a>
+				<a class="nav-link fa fa-phone" href="/contact"> Contact</a>
 			</li>
 			
 		</ul>
@@ -45,7 +49,7 @@
 		<ul class="navbar-nav ml-auto">	
 			<% if (typeof user !== 'undefined') { %>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown">
+					<a class="nav-link dropdown-toggle fa fa-user" data-toggle="dropdown">
 						Welcome <%= user.username %>!</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="/profile">Profile</a>
@@ -53,15 +57,15 @@
 					</div>
 				</li>	
 				<li class="nav-item">
-					<a class="nav-link glyphicon glyphicon-log-out" href="/logout">Logout</a>
+					<a class="nav-link fa fa-sign-out" href="/logout"> Logout</a>
 				</li>			
 			<% }else{%>
 				
 				<li class="nav-item">
-					<a class="nav-link glyphicon glyphicon-log-in" href="/login">Login</a>
+			 	<a class="nav-link fa fa-sign-in" href="/login"> Login</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link glyphicon glyphicon-registration-mark" href="/register">Register</a>
+					<a class="nav-link fa fa-user-plus" href="/register"> Register</a>
 				</li>
 			<% } %>
 			

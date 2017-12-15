@@ -1,6 +1,12 @@
 .nav-item a:hover{
 	background-color: white;
-	border-radius: 10px;
+
+}
+
+.headerNav{
+	background-color: #F5F5F5;
+	border-bottom: 2px solid #BEBEBE;
+	border-top: 1px solid #6600FF;
 }
 
 #registerForm,#loginForm{
@@ -39,12 +45,15 @@
 	margin: 50px 50px 50px 10px;
 }
 
-.userMenu-title{
+.userMenu-title h5{
 	border-bottom: 2px solid grey;
 }
 
-.userArea-list li.active a{
-	border-left: 2px solid #5b9bd1;
+.userArea-list .nav-link.active{
+	border-left: 2px solid #5b9bd1 !important; 
+	border-right-style: none !important;
+	border-top-style: none !important;
+	border-radius: 0px !important;
 }
 
 .avatar{

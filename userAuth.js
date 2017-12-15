@@ -40,7 +40,6 @@ function(username, password, done) {
 
 //se dese
 passport.serializeUser(function(user, done) {
-	console.log(user.id);
 	done(null, user.id);
 });
 
@@ -81,7 +80,8 @@ module.exports = {
 			secret: 'SEKR37' ,
 			resave: false,
 			saveUninitialized: false,
-			//preventing XSS
+			//preventing XSS by setting secure true( but currently not using
+			//HTMLS, redis server wouldn't work as expected to store session)
 			cookie: {  httpOnly: true 	 } 
 		}));
 

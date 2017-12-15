@@ -1,101 +1,120 @@
 <% include partials/header %>
+<script>
+	$(document).ready(function(){
+
+			
+	});
+
+</script>
 
 <div class="container-fluid userArea">
 	<div class="row">
 
 		<div class="col-2 userArea-userMenu shadowEffect">
-			<div>
-				<strong"><h3 class="userMenu-title">User Area</h3></strong>
+			<div class="userMenu-title">
+				<strong><h5>User Area</h5></strong>
 			</div>
-			<ul class="nav flex-column userArea-list">
-				<li>
-					<a href="#">
-						<i class="glyphicon glyphicon-user"></i>
-					User Profile </a>
+			<ul class="nav nav-tabs flex-column userArea-list">
+				<li class="nav-item">
+					<a class="nav-link active" href="#user-profile" data-toggle="tab">
+						<i class="fa fa-user"></i>
+					User Profile 						
+					</a>
 				</li>
-				<li>
-					<a href="#">
-						<i class="glyphicon glyphicon-cog"></i>
+				<li class="nav-item">
+					<a class="nav-link" href="#account-settings" data-toggle="tab">
+						<i class="fa fa-cog"></i>
 					Account Settings </a>
 				</li>
-				<li>
-					<a href="#">
-						<i class="glyphicon glyphicon-list-alt"></i>
+				<li class="nav-item">
+					<a class="nav-link" href="#manage-items" data-toggle="tab">
+						<i class="fa fa-list-alt"></i>
 					Manage Items </a>
 				</li>
-				<li>
-					<a href="#">
-						<i class="glyphicon glyphicon-question-sign"></i>
-					Help </a>
+				<li class="nav-item">
+					<a class="nav-link" href="#inbox" data-toggle="tab">
+						<i class="fa fa-inbox"></i>
+					Inbox </a>
 				</li>
 			</ul>
 		</div>
-		<div class="col-6 userArea-content float-right shadowEffect">
-			<img class="img-responsive avatar" src="./img/userimg.png">
+		<div class="tab-content col-6 userArea-content float-right shadowEffect">
 
-		</div>
-
-
-		<div class="container shadowEffect" id="registerForm">
-			<form class="form-inline" action="/register" method="POST">
-				<div class="form-group">
-					<label>Name</label>
-					<input type="text" class="ml-2 form-control" name="Name">
-				</div>	
-				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="ml-2 form-control" name="Email">
-				</div>    
-				<div class="form-group">
-					<label>Birth Date</label>
-					<input type="date" class="ml-2 form-control" name="BirthDate">
+			<div id="user-profile" class="tab-pane fade in active">
+				<div>
+					<img class="in active img-responsive avatar" src="./img/userimg.png">
 				</div>
-				<div class="form-group">
-					<label>Username</label>
-					<input type="text" class="ml-2 form-control" name="Username">
-				</div>    
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="ml-2 form-control" name="Password">
-				</div>    
-				<div class="form-group">
-					<label>Phone Number</label>
-					<input type="tel" class="ml-2 form-control" name="PhoneNumber">
-				</div>		
-
-				<div class="form-group">
-					<label">District</label>
-					<select class="form-control" name ="District">
-						<option selected>Islands</option>
-						<option>Kwai Tsing</option>
-						<option>North</option>
-						<option>Sai Kung</option>
-						<option>Sha Tin</option>
-						<option>Tai Po</option>
-						<option>Tsuen Wan</option></option>
-						<option>Tuen Mun</option>
-						<option>Yuen Long</option>
-						<option>Kowloon City</option>
-						<option>Kwun Tong</option>
-						<option>Sham Shui Po</option>
-						<option>Wong Tai Sin</option>
-						<option>Yau Tsim Mong</option>
-						<option>Central and Western</option>
-						<option>Eastern</option>
-						<option>Southern</option>
-						<option>Wan Chai</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<div class="form-check">
-						<label class="form-check-label">
-							<input class="form-check-input" type="checkbox"> I agree the term of services.
-						</label>
+			</div>
+			<div id="account-settings" class="tab-pane fade">
+				<form class="form-inline" action="/register" method="POST">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" class="ml-2 form-control" name="Name">
+					</div>	
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="ml-2 form-control" name="Email">
+					</div>    
+					<div class="form-group">
+						<label>Birth Date</label>
+						<input type="date" class="ml-2 form-control" name="BirthDate">
 					</div>
-				</div><br><br><br>
-				<button type="submit" class="ml-5 btn btn-primary">Sign in</button>
-			</form>
+					<div class="form-group">
+						<label>Username</label>
+						<input type="text" class="ml-2 form-control" name="Username">
+					</div>    
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" class="ml-2 form-control" name="Password">
+					</div>    
+					<div class="form-group">
+						<label>Phone Number</label>
+						<input type="tel" class="ml-2 form-control" name="PhoneNumber">
+					</div>		
+
+					<div class="form-group">
+						<label">District</label>
+						<select class="form-control" name ="District">
+							<option selected>Islands</option>
+							<option>Kwai Tsing</option>
+							<option>North</option>
+							<option>Sai Kung</option>
+							<option>Sha Tin</option>
+							<option>Tai Po</option>
+							<option>Tsuen Wan</option></option>
+							<option>Tuen Mun</option>
+							<option>Yuen Long</option>
+							<option>Kowloon City</option>
+							<option>Kwun Tong</option>
+							<option>Sham Shui Po</option>
+							<option>Wong Tai Sin</option>
+							<option>Yau Tsim Mong</option>
+							<option>Central and Western</option>
+							<option>Eastern</option>
+							<option>Southern</option>
+							<option>Wan Chai</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox"> I agree the term of services.
+							</label>
+						</div>
+					</div><br><br><br>
+					<button type="submit" class="ml-5 btn btn-primary">Sign in</button>
+				</form>
+			</div>
+			<div id="manage-items" class="tab-pane fade">
+				
+			</div>
+			<div id="inbox" class="tab-pane fade">
+				
+			</div>
 		</div>
+
+
+		
 
 	</div>
 	
