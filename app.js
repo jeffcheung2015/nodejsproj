@@ -46,9 +46,18 @@ app.get("/profile", userAuth.isLoggedIn, function(req, res){
 	res.render('profile', { user: req.user });
 });
 
-app.get('/category/:id' , function(req, res){
+app.post("/accountSettings", userAuth.isLoggedIn, function(req,res){
+	db.updateUserRow(req.body.Name, req.body.Email, req.body.BirthDate,
+	 req.body.OldPassword, req.body.NewPassword, req.body.PhoneNumber, 
+	 req.body.District);
+	res.redirect("/profile");
+});
+
+app.get("/category/:id", function(req, res){
 	console.log(req.params.id);
 });
+
+
 
 app.listen('80');
 

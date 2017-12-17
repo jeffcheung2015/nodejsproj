@@ -1,52 +1,57 @@
 <% include partials/header %>
-<script>
-	$(document).ready(function(){
 
-			
-	});
 
-</script>
-
-<div class="container-fluid userArea">
+<div class="container userArea">
 	<div class="row">
 
-		<div class="col-2 userArea-userMenu shadowEffect">
+		<div class="col-lg-3 userArea-userMenu shadowEffect">
 			<div class="userMenu-title">
 				<strong><h5>User Area</h5></strong>
 			</div>
-			<ul class="nav nav-tabs flex-column userArea-list">
-				<li class="nav-item">
+			<ul class="nav nav-tabs flex-column userArea-list" role="tablist">
+				<li class="nav-item row">
 					<a class="nav-link active" href="#user-profile" data-toggle="tab">
 						<i class="fa fa-user"></i>
 					User Profile 						
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item row">
 					<a class="nav-link" href="#account-settings" data-toggle="tab">
 						<i class="fa fa-cog"></i>
 					Account Settings </a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item row">
 					<a class="nav-link" href="#manage-items" data-toggle="tab">
 						<i class="fa fa-list-alt"></i>
 					Manage Items </a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item row">
 					<a class="nav-link" href="#inbox" data-toggle="tab">
 						<i class="fa fa-inbox"></i>
 					Inbox </a>
 				</li>
 			</ul>
 		</div>
-		<div class="tab-content col-6 userArea-content float-right shadowEffect">
+		<div class="tab-content col-lg-7 userArea-content float-right shadowEffect">
 
-			<div id="user-profile" class="tab-pane fade in active">
-				<div>
-					<img class="in active img-responsive avatar" src="./img/userimg.png">
+			<div role="tabpanel" class="tab-pane fade show active" id="user-profile">
+				<div class="row justify-content-center">
+					<img class="avatar w-25 h-25" src="./img/default-user-image.png">
 				</div>
+
+				<div class="row">
+					<p class="col-lg-6">Name: <%=user.name %></p>
+					<p class="col-lg-6">Email: <%=user.email %></p></div>
+				<div class="row">
+					<p class="col-lg-6">Birth Date: <%=user.birthdate %></p>
+					<p class="col-lg-6">Phone number: <%=user.phonenumber %></p>
+				</div>
+				<div class="row"><p class="col-lg-12">District: <%=user.district %></p></div>
+				<div class="row"><p class="col-lg-12">Account Created date: <%=user.createAt %></p></div>
+
 			</div>
-			<div id="account-settings" class="tab-pane fade">
-				<form class="form-inline" action="/register" method="POST">
+			<div role="tabpanel" class="tab-pane fade" id="account-settings">
+				<form class="form-inline" action="/accountSettings" method="POST">
 					<div class="form-group">
 						<label>Name</label>
 						<input type="text" class="ml-2 form-control" name="Name">
@@ -60,12 +65,12 @@
 						<input type="date" class="ml-2 form-control" name="BirthDate">
 					</div>
 					<div class="form-group">
-						<label>Username</label>
-						<input type="text" class="ml-2 form-control" name="Username">
+						<label>Old Password</label>
+						<input type="password" class="ml-2 form-control" name="OldPassword">
 					</div>    
 					<div class="form-group">
-						<label>Password</label>
-						<input type="password" class="ml-2 form-control" name="Password">
+						<label>New Password</label>
+						<input type="password" class="ml-2 form-control" name="New Password">
 					</div>    
 					<div class="form-group">
 						<label>Phone Number</label>
@@ -105,22 +110,29 @@
 					<button type="submit" class="ml-5 btn btn-primary">Sign in</button>
 				</form>
 			</div>
-			<div id="manage-items" class="tab-pane fade">
+			<div role="tabpanel" class="tab-pane fade" id="manage-items">
 				
 			</div>
-			<div id="inbox" class="tab-pane fade">
+			<div role="tabpanel" class="tab-pane fade" id="inbox" >
 				
 			</div>
-		</div>
-
-
-		
-
-	</div>
-	
+		</div>	
+	</div>	
 	<div class="row"></div>
-
 </div>
 
+
+
+
+
+
+
+<script>
+	$(document).ready(function(){
+
+			
+	});
+
+</script>
 
 <% include partials/footer %>

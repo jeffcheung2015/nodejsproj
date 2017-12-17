@@ -32,17 +32,19 @@
 /*profile*/
 .userArea{
 	background-color: #F1F3FA;
-	height: 600px;
+	min-height: 600px;
 }
 
 .userArea-userMenu{
 	background-color: white;
-	margin: 50px 50px 50px 20px;
+	margin: 20px 30px 0px 20px;
+	min-height: 500px;
 }
 
 .userArea-content{
 	background-color: white;
-	margin: 50px 50px 50px 10px;
+	margin: 20px 30px 0px 20px;
+	min-height: 500px;
 }
 
 .userMenu-title h5{
@@ -59,8 +61,4 @@
 .avatar{
 	border: 2px solid black;
 	margin-top: 10px;
-}
-.avatar:hover{
-	box-shadow: 2px 2px 2px #888888;
-	border:0.5px outset #7ecdee;
 }

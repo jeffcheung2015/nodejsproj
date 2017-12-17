@@ -77,9 +77,9 @@ module.exports = {
 			port: '6379',
 			prefix:'sess'
 		}), 
-			secret: 'SEKR37' ,
-			resave: false,
-			saveUninitialized: false,
+		secret: 'SEKR37' ,
+		resave: false,
+		saveUninitialized: false,
 			//preventing XSS by setting secure true( but currently not using
 			//HTMLS, redis server wouldn't work as expected to store session)
 			cookie: {  httpOnly: true 	 } 
@@ -104,14 +104,20 @@ module.exports = {
 		);
 
 		//register
-		app.get('/register',  isLoggedOut, function(req, res){
-			res.render('register', { message: "xx" });
+		app.get('/register',  isLoggedOut, function(req, res){			
+			res.render('register', { error: req.session.error });
+			req.session.destroy();//just to remove the error message
 		});
 		app.post('/register', function(req,res){
-			db.insertUserRow(req.body.Name, req.body.Email, req.body.BirthDate
+			//validate user's input
+			
+
+
+			db.insertUserRow(req, res, req.body.Name, req.body.Email, req.body.BirthDate
 				, req.body.Username, req.body.Password, req.body.PhoneNumber
 				, req.body.District);
-			res.redirect('/');
+
+			
 		});	
 
 		//logout
