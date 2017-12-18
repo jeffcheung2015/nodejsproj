@@ -16,6 +16,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+
+var storage = multer.diskStorage({ //multers disk storage settings
+        destination: function (req, file, cb) {
+            cb(null, './uploads/')
+        },
+        filename: function (req, file, cb) {
+            var datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        }
+    });
+var upload = multer({ //multer settings
+                    storage: storage
+                }).single('file');
+
 /*
 var consol = function(req, res, next){
 	console.log('xxx');
@@ -43,14 +58,16 @@ app.get("/contact", userAuth.isLoggedIn, function(req,res){
 });
 
 app.get("/profile", userAuth.isLoggedIn, function(req, res){	
-	res.render('profile', { user: req.user });
+	//One time error msg 
+	var errorMsg = req.session.error;
+	delete req.session.error;
+	res.render('profile', { error: errorMsg, user: req.user });
 });
 
 app.post("/accountSettings", userAuth.isLoggedIn, function(req,res){
-	db.updateUserRow(req.body.Name, req.body.Email, req.body.BirthDate,
+	db.updateUserRow(req, res, req.user.username, req.body.Name, req.body.Email, req.body.BirthDate,
 	 req.body.OldPassword, req.body.NewPassword, req.body.PhoneNumber, 
 	 req.body.District);
-	res.redirect("/profile");
 });
 
 app.get("/category/:id", function(req, res){

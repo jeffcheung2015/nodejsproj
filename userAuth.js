@@ -105,13 +105,27 @@ module.exports = {
 
 		//register
 		app.get('/register',  isLoggedOut, function(req, res){			
-			res.render('register', { error: req.session.error });
-			req.session.destroy();//just to remove the error message
+			//One time error msg 
+			var errorMsg = req.session.error;
+			delete req.session.error;
+			res.render('register', { error: errorMsg });
 		});
 		app.post('/register', function(req,res){
 			//validate user's input
-			
 
+			/*
+			
+			req.session.error = {
+				name : (req.body.Name === "") ? "Name is empty" : "",
+				email : (req.body.Email === "") ? "Email is empty" : "",
+				password : (req.body.BirthDate === "") ? "Password is empty" : "",
+				phoneno : (newPhoneno === "") ? "PhoneNumber is empty" : "",
+				name : (newName === "") ? "Name is empty" : "",
+				name : (newName === "") ? "Name is empty" : "",
+
+
+			};
+			*/
 
 			db.insertUserRow(req, res, req.body.Name, req.body.Email, req.body.BirthDate
 				, req.body.Username, req.body.Password, req.body.PhoneNumber

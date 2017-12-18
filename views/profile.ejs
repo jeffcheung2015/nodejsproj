@@ -52,32 +52,35 @@
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="account-settings">
 				<form class="form-inline" action="/accountSettings" method="POST">
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label>Name</label>
-						<input type="text" class="ml-2 form-control" name="Name">
+						<input type="text" class="ml-1 form-control" name="Name">
 					</div>	
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label>Email</label>
-						<input type="email" class="ml-2 form-control" name="Email">
+						<input type="email" class="ml-1 form-control" name="Email">
 					</div>    
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label>Birth Date</label>
-						<input type="date" class="ml-2 form-control" name="BirthDate">
+						<input type="date" class="ml-1 form-control" name="BirthDate">
 					</div>
-					<div class="form-group">
+					<% if (error != null) { %>
+				        	<div class="alert-danger row ml-1 h6"><%= error.password %></div><br>
+				    <% } %>
+					<div class="form-group row m-1">						
 						<label>Old Password</label>
-						<input type="password" class="ml-2 form-control" name="OldPassword">
+						<input type="password" class="ml-1 form-control" name="OldPassword">
 					</div>    
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label>New Password</label>
-						<input type="password" class="ml-2 form-control" name="New Password">
+						<input type="password" class="ml-1 form-control" name="New Password">
 					</div>    
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label>Phone Number</label>
-						<input type="tel" class="ml-2 form-control" name="PhoneNumber">
+						<input type="tel" class="ml-1 form-control" name="PhoneNumber">
 					</div>		
 
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<label">District</label>
 						<select class="form-control" name ="District">
 							<option selected>Islands</option>
@@ -100,14 +103,14 @@
 							<option>Wan Chai</option>
 						</select>
 					</div>
-					<div class="form-group">
+					<div class="form-group row m-1">
 						<div class="form-check">
 							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox"> I agree the term of services.
+								<input class="form-check-input" type="checkbox"> I agree the TOS.
 							</label>
 						</div>
 					</div><br><br><br>
-					<button type="submit" class="ml-5 btn btn-primary">Sign in</button>
+					<button type="submit" class="row m-1 btn btn-primary">Update</button>
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="manage-items">

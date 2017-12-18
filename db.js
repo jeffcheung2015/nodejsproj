@@ -34,27 +34,65 @@ module.exports={
 		bcrypt.hash(pw, 10, function(err, hash) {
 		  // Store hash in database
 		  var sql = "Insert into usertb(name, email, birthdate, username, pwhash, "+
-			"phonenumber, district, createAt) values(?, ?, ?, ?, ?, ?, ?, CURDATE())";
-			conn.query(sql,[name, email, birth, uname, hash, phoneno, district], 
-				function (err, result) {
-					if(err) {
-						console.log('sql insert error:'+err);
-						req.session.error = "invlaid ";
-						res.redirect("/register");
-					}
-					else{						
-						res.redirect('/');
-					}
-				});
+		  "phonenumber, district, createAt) values(?, ?, ?, ?, ?, ?, ?, CURDATE())";
+		  conn.query(sql,[name, email, birth, uname, hash, phoneno, district], 
+		  	function (err, result) {
+		  		if(err) {
+		  			console.log('sql insert error:'+err);
+		  			req.session.error = "invlaid operation.";
+		  			res.redirect("/register");
+		  		}
+		  		else{						
+		  			res.redirect('/');
+		  		}
+		  	});
 		});
 	},
 
-	updateUserRow : function(name, email, birth, oldpw, newpw, phoneno, district){
-		if(oldpw==undefined){
-			console.log("undefined");
+	updateUserRow : function(req, res, username, newName, newEmail, newBirthdate,
+		oldpw, newpw, newPhoneno, newDistrict){
+		if(oldpw === ""){ //without inputting original password is unpermitted
+			req.session.error = {
+				password : "Must be filled out for any update of user info."
+			};
+			res.redirect("/profile");
+		}else{
+			if(newpw === ""){
+				conn.query(updateRowSql(newpw), [username], function(err, result){
+					if(err) {
+				  			console.log('sql insert error:'+err);
+				  			req.session.error = "invlaid operation.";
+				  			res.redirect("/profile");
+				  		}
+				});
+			}
+			else{
+				bcrypt.hash(newpw, 10, function(err, hash){				
+					conn.query(updateRowSql(hash), [username], function(err, result){
+						if(err) {
+				  			console.log('sql insert error:'+err);
+				  			req.session.error = "invlaid operation.";
+				  			res.redirect("/profile");
+				  		}
+					});
+				});
+			}
 		}
-
 	}
 
 };
 
+function updateRowSql(hash, newName, newEmail, newBirthdate, oldpw, newpw,
+ newPhoneno, newDistrict){
+	var nameStr = (newName !== "") ? "name = " + newName + ",": "",
+	emailStr = (newEmail !== "") ? "email = " + newEmail + ",": "",
+	birthStr = (newBirth !== "") ? "birthdate = " + newBirthdate + ",": "",
+	pwStr = (hash !== "") ? "password = " + hash + ",": "",
+	phoneNoStr = (newPhoneno !== "") ? "phoneno = " + newPhoneno + ",": "",
+	districtStr = (newDistrict !== "") ? "district = " + newDistrict + ",": "";
+
+	var sql = "Update usertb set " + nameStr + emailStr + birthStr +
+					pwStr + phoneNoStr + districtStr + " where username = ?";
+
+	return sql;
+}
