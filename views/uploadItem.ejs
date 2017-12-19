@@ -1,0 +1,24 @@
+<% include partials/header %>
+
+<div class="container shadowEffect" id="uploadForm">
+	<form class="form-inline" action="/uploadItem" method="POST" enctype="multipart/form-data">
+		<div class="form-group">
+			<% if (message != null) { %>
+        		<div class="alert alert-success"><%= message %></div>
+        	<% } %>
+			<label>File</label>
+			<input type="file" class="ml-2 form-control" name="file" multiple>
+			<input type="submit" name="submit">
+		</div>			
+	</form>
+</div>
+
+<script>
+	$(document).ready(function(){
+
+			
+	});
+
+</script>
+
+<% include partials/footer %>
