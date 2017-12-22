@@ -1,66 +1,102 @@
 <% include partials/header %>
 
-<div class="container shadowEffect" id="registerForm">
-	<form class="form-inline" action="/register" method="POST">
+<div class="container shadowEffect " id="registerForm" ng-app="">
+	<form name="registerForm" action="/register" method="POST">
 		<% if (error != null) { %>
         	<div class="alert alert-danger"><%= error %></div>
         <% } %>
-		<div class="form-group">
-			<label>Name</label>
-			<input type="text" class="ml-2 form-control" name="Name">
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Name</label>
+				<input class="col-sm form-control" type="text" ng-model="name" name="Name" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.Name.$dirty && registerForm.Name.$invalid" class="col-sm text-right" style="color:red;">Name is invalid.</small>
+			</div>
 		</div>			
-		<div class="form-group">
-			<label>Email</label>
-			<input type="email" class="ml-2 form-control" name="Email">
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Email</label>
+				<input class="col-sm form-control" type="email" ng-model="email" name="Email" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.Email.$dirty && registerForm.Email.$invalid" class="col-sm text-right" style="color:red;">Email is invalid.</small>
+			</div>
 		</div>    
-		<div class="form-group">
-			<label>Birth Date</label>
-			<input type="date" class="ml-2 form-control" name="BirthDate">
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Birth Date</label>
+				<input class="col-sm form-control" type="date" ng-model="birthdate" name="BirthDate" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.BirthDate.$dirty && registerForm.BirthDate.$invalid" class="col-sm text-right" style="color:red;">BirthDate is invalid.</small>
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Username</label>
-			<input type="text" class="ml-2 form-control" name="Username">
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Username</label>
+				<input class="col-sm form-control" type="text" ng-model="username" name="Username" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.Username.$dirty && registerForm.Username.$invalid" class="col-sm text-right" style="color:red;">Username is invalid.</small>
+			</div>
 		</div>    
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="ml-2 form-control" name="Password">
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Password</label>
+				<input class="col-sm form-control" type="password" ng-model="password" name="Password" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.Password.$dirty && registerForm.Password.$invalid" class="col-sm text-right" style="color:red;">Password is invalid.</small>
+			</div>
 		</div>    
-		<div class="form-group">
-			<label>Phone Number</label>
-			<input type="tel" class="ml-2 form-control" name="PhoneNumber">
+
+		<div class="form-group mr-1 ml-1">			
+			<div class="row">
+				<label class="col-sm">Phone Number</label>
+				<input class="col-sm form-control" type="tel" ng-model="phoneNumber" name="PhoneNumber" required>
+			</div>
+			<div class="row">
+				<small ng-show="registerForm.PhoneNumber.$dirty && registerForm.PhoneNumber.$invalid" class="col-sm text-right" style="color:red;">Phone number is invalid.</small>
+			</div>
 		</div>		
+
 			
-		<div class="form-group">
-			<label">District</label>
-			<select class="form-control" name ="District">
-				<option selected>Islands</option>
-				<option>Kwai Tsing</option>
-				<option>North</option>
-				<option>Sai Kung</option>
-				<option>Sha Tin</option>
-				<option>Tai Po</option>
-				<option>Tsuen Wan</option></option>
-				<option>Tuen Mun</option>
-				<option>Yuen Long</option>
-				<option>Kowloon City</option>
-				<option>Kwun Tong</option>
-				<option>Sham Shui Po</option>
-				<option>Wong Tai Sin</option>
-				<option>Yau Tsim Mong</option>
-				<option>Central and Western</option>
-				<option>Eastern</option>
-				<option>Southern</option>
-				<option>Wan Chai</option>
-			</select>
+		<div class="form-group mr-1 ml-1">
+			<div class="row">
+				<label class="col-sm">District</label>
+				<select class="col-sm form-control" name ="District">
+					<option selected>Islands</option>
+					<option>Kwai Tsing</option>
+					<option>North</option>
+					<option>Sai Kung</option>
+					<option>Sha Tin</option>
+					<option>Tai Po</option>
+					<option>Tsuen Wan</option></option>
+					<option>Tuen Mun</option>
+					<option>Yuen Long</option>
+					<option>Kowloon City</option>
+					<option>Kwun Tong</option>
+					<option>Sham Shui Po</option>
+					<option>Wong Tai Sin</option>
+					<option>Yau Tsim Mong</option>
+					<option>Central and Western</option>
+					<option>Eastern</option>
+					<option>Southern</option>
+					<option>Wan Chai</option>
+				</select>
+			</div>
 		</div>
 		<div class="form-group">
 			<div class="form-check">
 				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox"> I agree the term of services.
+					<input class="form-check-input" type="checkbox" required> I agree the term of services.
 				</label>
 			</div>
-		</div><br><br><br>
-		<button type="submit" class="ml-5 btn btn-primary">Sign in</button>
+			<button type="submit" class="ml-1 btn btn-success mx-auto d-block">Sign in</button>
+		</div>
+
+		
 	</form>
 </div>
 

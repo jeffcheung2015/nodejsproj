@@ -1,20 +1,29 @@
 <% include partials/header %>
-<div class="container shadowEffect" id="loginForm">
-	<form action="/login" method="POST">
-		<% if (message != null) { %>
+<div class="container shadowEffect" id="loginForm" ng-app="">
+	<form action="/login" method="POST" name="loginForm">
+		<% if (message != undefined && message != "") { %>
         	<div class="alert alert-danger"><%= message %></div>
         <% } %>
-
-		<div class="form-group col-md-6">
-			<label>Username</label>
-			<input type="text" class="form-control" name="Username">
-		</div>    
-		<div class="form-group col-md-6">
-			<label>Password</label>
-			<input type="password" class="form-control" name="Password">
+		<div class="form-group">			
+			<div class="row">
+				<label class="col-sm">Username</label>
+				<input type="text" class="form-control col-sm" name="Username" ng-model="username" required>
+			</div>
+			<div class="row">
+				<small ng-show="loginForm.Username.$dirty && loginForm.Username.$invalid" class="col-sm text-right" style="color:red;">Username is invalid.</small>	
+			</div>
+		</div>
+		<div class="form-group">			
+			<div class="row">
+				<label class="col-sm">Password</label>
+				<input type="password" class="form-control col-sm" name="Password" ng-model="password" required>
+			</div>
+			<div class="row">
+				<small ng-show="loginForm.Password.$dirty && loginForm.Password.$invalid" class="col-sm text-right" style="color:red;">Password is invalid.</small>			
+			</div>
 		</div>    		
 		
-		<button type="submit" class="btn btn-primary">Log in</button>
+		<button type="submit" class="btn btn-success d-block mx-auto">Log in</button>
 	</form>
 </div>
 <% include partials/footer %>

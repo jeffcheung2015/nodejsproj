@@ -93,6 +93,8 @@ module.exports = {
 
 		//login
 		app.get('/login', isLoggedOut, function(req, res){
+			//console.log(req.flash("error")+":"+
+			//	(req.flash("error")!= undefined && req.flash("error") == ""));
 			//req.flash("error") is a must in order to make the error msg appeared
 			res.render('login', { message: req.flash("error")});
 		});

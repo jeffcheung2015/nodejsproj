@@ -12,10 +12,7 @@ var app = express();
 //define the view engine
 app.use(express.static(__dirname + '/views'));
 // for parsing application/x-www-form-urlencoded
-
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -77,6 +74,10 @@ app.get("/profile", userAuth.isLoggedIn, function(req, res){
 
 app.get("/category/:id", function(req, res){
 	console.log(req.params.id);
+});
+
+app.get("/faq", function(req, res){
+	res.render('faq');
 });
 
 app.post("/uploadItem", userAuth.isLoggedIn, function(req,res){
